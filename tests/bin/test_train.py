@@ -18,6 +18,16 @@ import keras_retinanet.bin.train
 
 import warnings
 
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def clear_session():
+    # run before test (do nothing)
+    yield
+    # run after test, clear keras session
+    keras.backend.clear_session()
+
 
 def test_coco():
     # ignore warnings in this test
